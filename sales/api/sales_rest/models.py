@@ -1,6 +1,7 @@
 from django.db import models
 
 class AutomobileVO(models.Model):
+    import_href =models.CharField(max_length=255, unique=True)
     model = models.CharField(max_length=255)
     color = models.CharField(max_length=255)
     year = models.PositiveIntegerField()
@@ -16,7 +17,7 @@ class Customer(models.Model):
     phone_number = models.BigIntegerField(unique=True)
 
 class Record(models.Model):
-    price = models.PositiveIntegerField()
+    price = models.FloatField()
     employee = models.ForeignKey(
         Employee,
         related_name="employee",
