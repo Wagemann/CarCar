@@ -7,11 +7,11 @@ class AutomobileVO(models.Model):
     vin = models.PositiveIntegerField(unique=True)
 
 class Employee(models.Model):
-    name = models.CharField(max_length=255)
+    employee_name = models.CharField(max_length=255)
     employee_id = models.PositiveIntegerField(unique=True)
 
 class Customer(models.Model):
-    name = models.CharField(max_length=255)
+    customer_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     phone_number = models.BigIntegerField(unique=True)
 
