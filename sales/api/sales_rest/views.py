@@ -37,21 +37,59 @@ class CustomerEncoder(ModelEncoder):
 class RecordListEncoder(ModelEncoder):
     model = Record
     properties = [
-        "name",
+        "id",
+        "employee_name",
         "employee_number"
-        "name",
+        "customer_name",
         "vin",
         "price",
     ]
     encoders = {
-        "employee": EmployeeEncoder(),
+        "employee_name": EmployeeEncoder(),
         "employee_number": EmployeeEncoder,
-        "name": CustomerEncoder(),
+        "customer_name": CustomerEncoder(),
         "vin": AutombileEncoder(),
     }
 
 class RecordDetailEncoder(ModelEncoder):
     model = Record
     properties = [
-        "emplo"
+        "employee_name"
+        "customer_name"
+        "vin"
+        "price"
     ]
+    encoders = {
+        "employee_name": EmployeeEncoder(),
+        "customer_name": CustomerEncoder(),
+        "vin": AutombileEncoder(),
+    }
+
+@require_http_methods("GET, POST")
+def api_employee(request):
+    if request.method =="GET":
+        employee = Employee.objects.all()
+        return JsonResponse(
+            {"employees": employees},
+            encoder=EmployeeEncoder
+        )
+    else:
+        try:
+            content = json.loads(request.body)
+            employee_id = content["employee_id"]
+            employee = Employee.objects.get(pk=employee_id)
+            content["employee"] = employee
+            employed = Employee.objects.create(**content)
+            return JsonResponse(
+                employed,
+                encoder=Employee,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create Employee"}
+            )
+            response.status_code = 400
+            return response
+
+
