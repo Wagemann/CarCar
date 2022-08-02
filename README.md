@@ -2,10 +2,11 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Nick Wagemann - Sales
+* Teresa Tan - Service
 
 ## Design
+https://excalidraw.com/#room=0f44eaab5c08dac4624c,2vOC4MVxqogn7K-tuU1SWg
 
 ## Service microservice
 
