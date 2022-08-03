@@ -35,24 +35,12 @@ class ManufacturerForm extends React.Component {
               this.setState(cleared);
             }
         }
-    
 
     handleNameChange(event) {
         const value = event.target.value;
         this.setState({name: value})
     }
 
-
-    async componentDidMount() {
-        const url = 'http://localhost:8100/api/manufacturers/';
-        const response = await fetch(url);
-    
-        if (response.ok) {
-          const data = await response.json();
-          this.setState({manufacturers: data.manufacturers});
-            console.log(data)
-        }
-      }
 
   render() {
     return (
