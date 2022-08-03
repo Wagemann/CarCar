@@ -31,6 +31,7 @@ class AppointmentEncoder(ModelEncoder):
         "technician",
         "reason",
         "is_vip",
+        "completed",
     ]
     encoders = {
         "technician": TechnicianEncoder(),
@@ -126,11 +127,8 @@ def api_show_service_appointment(request, pk):
             )
     else:
         content = json.loads(request.body)
-        print("!!!!!!!", content)
-        
         appointment = ServiceAppointment.objects.get(id=pk)
-        print("*******", appointment)
-        setattr(appointment, "isCompleted", content["isCompleted"])
+        setattr(appointment, "completed", content["completed"])
         appointment.save()
         return JsonResponse(
         appointment,
