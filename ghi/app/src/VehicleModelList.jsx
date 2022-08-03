@@ -10,12 +10,12 @@ function VehicleModelList(props) {
                 <th>Image</th>
                 </tr>
             </thead>
-            <tbody>{props.vehiclemodels.map(vehiclemodel => {
+            <tbody>{props.autos.map(model => {
                 return (
-                    <tr key={vehiclemodel.id} >
-                        <td>{vehiclemodel.name}</td>
-                        <td>{vehiclemodel.manufacturer}</td>
-                        <td><img src={vehiclemodel.picture_url} alt=""/></td>
+                    <tr key={model.id} >
+                        <td>{model.name}</td>
+                        <td>{model.manufacturer}</td>
+                        <td><img src={model.picture_url} alt=""/></td>
                     </tr>
                 );
             })}
