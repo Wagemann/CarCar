@@ -2,7 +2,7 @@ import React from 'react';
 
 function ManufacturerList(props) {
     return (
-        <table>
+        <table className="table table-striped">
             <thead>
                 <tr>
                 <th>Manufacturer Name</th>
