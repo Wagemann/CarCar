@@ -4,7 +4,7 @@ import Nav from './Nav';
 import ManufacturerList from './ManufacturerList'
 
 function App(props) {
-  if (props.menufacturers === undefined){
+  if (props.manufacturers === undefined){
     return null;
   }
   return (
