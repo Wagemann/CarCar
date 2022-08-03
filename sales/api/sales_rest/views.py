@@ -1,18 +1,15 @@
+import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from common.json import ModelEncoder
-import json
 
 from .models import AutomobileVO, Customer, Employee, Record
 
-class AutombileEncoder(ModelEncoder):
+class AutomobileEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "model",
-        "color",
-        "year",
         "vin",
     ]
 
@@ -38,16 +35,16 @@ class RecordListEncoder(ModelEncoder):
     properties = [
         "id",
         "employee_name",
-        "employee_number",
+        "employee_id",
         "customer_name",
         "vin",
         "price",
     ]
     encoders = {
         "employee_name": EmployeeEncoder(),
-        "employee_number": EmployeeEncoder,
+        "employee_id": EmployeeEncoder(),
         "customer_name": CustomerEncoder(),
-        "vin": AutombileEncoder(),
+        "vin": AutomobileEncoder(),
     }
 
 class RecordDetailEncoder(ModelEncoder):
@@ -62,7 +59,7 @@ class RecordDetailEncoder(ModelEncoder):
     encoders = {
         "employee_name": EmployeeEncoder(),
         "customer_name": CustomerEncoder(),
-        "vin": AutombileEncoder(),
+        "vin": AutomobileEncoder(),
     }
 
 @require_http_methods("GET, POST")
@@ -209,11 +206,13 @@ def api_list_records(request):
             {"record": record},
             encoder=RecordListEncoder,
         )
-    else:
+    else:#Post
         try:
             content = json.loads(request.body)
+            print("content--->", content)
 
             record = Record.objects.create(**content)
+            print("record---->", record)
             return JsonResponse(
                 record,
                 encoder=RecordListEncoder,
