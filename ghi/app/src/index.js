@@ -9,9 +9,11 @@ async function loadLists() {
   if (response.ok && response2.ok) {
     const data = await response.json();
     const data2 = await response2.json();
+    // console.log(data2.models)
     root.render(
       <React.StrictMode>
-        <App manufacturers={data.manufacturers} models={data2.model}/>
+        <App manufacturers={data.manufacturers} models={data2.models}/>
+        
       </React.StrictMode>
     );
   }else{

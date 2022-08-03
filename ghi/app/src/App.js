@@ -10,7 +10,7 @@ function App(props) {
     return null;
   }
 
-  if (props.vehiclemodels === undefined){
+  if (props.models === undefined){
     return null;
   }
 
@@ -19,7 +19,7 @@ function App(props) {
       <Nav />
       <div className="container">
         <Routes>
-          <Route path="/inventory/models" element={<VehicleModelList vehiclemodels={props.vehiclemodels} />} />
+          <Route path="/inventory/models" element={<VehicleModelList models={props.models} />} />
           {/* <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} /> */}
           <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} />
           <Route path="/inventory/manufacturer/create" element={<ManufacturerForm/ >} />

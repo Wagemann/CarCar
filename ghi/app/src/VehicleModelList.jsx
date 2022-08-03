@@ -1,6 +1,7 @@
 import React from 'react';
 
 function VehicleModelList(props) {
+    console.log("props!!!!!!", props.models)
     return (
         <table className="table table-striped">
             <thead>
@@ -10,11 +11,11 @@ function VehicleModelList(props) {
                 <th>Image</th>
                 </tr>
             </thead>
-            <tbody>{props.autos.map(model => {
+            <tbody>{props.models.map(model => {
                 return (
-                    <tr key={model.id} >
+                    <tr key={model.href} >
                         <td>{model.name}</td>
-                        <td>{model.manufacturer}</td>
+                        <td>{model.manufacturer.name}</td>
                         <td><img src={model.picture_url} alt=""/></td>
                     </tr>
                 );
