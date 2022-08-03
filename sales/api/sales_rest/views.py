@@ -34,33 +34,36 @@ class RecordListEncoder(ModelEncoder):
     model = Record
     properties = [
         "id",
-        "employee_name",
-        "employee_id",
-        "customer_name",
-        "vin",
+        # "employee",
+        # "employee_id",
         "price",
     ]
     encoders = {
-        "employee_name": EmployeeEncoder(),
-        "employee_id": EmployeeEncoder(),
-        "customer_name": CustomerEncoder(),
-        "vin": AutomobileEncoder(),
+        "employee": EmployeeEncoder(),
+        "customer": CustomerEncoder(),
+        "automobile": AutomobileEncoder(),
     }
+    def get_extra_data(self,o):
+        return {"customer_name" : o.customer.customer_name,
+        "employee_name": o.employee.employee_name,
+        "employee_id" : o.employee.employee_id,
+        "vin": o.automobile.vin }
 
 class RecordDetailEncoder(ModelEncoder):
     model = Record
     properties = [
         "id",
-        "employee_name",
-        "customer_name",
-        "vin",
         "price",
     ]
     encoders = {
-        "employee_name": EmployeeEncoder(),
-        "customer_name": CustomerEncoder(),
-        "vin": AutomobileEncoder(),
+        "employee": EmployeeEncoder(),
+        "customer": CustomerEncoder(),
+        "automobile": AutomobileEncoder(),
     }
+    def get_extra_data(self,o):
+        return {"customer_name" : o.customer.customer_name, 
+        "employee_name" : o.employee.employee_name,
+        "vin": o.automobile.vin }    
 
 @require_http_methods("GET, POST")
 def api_list_employees(request):
@@ -201,29 +204,36 @@ def api_customer(request, id):
 @require_http_methods("GET, POST")
 def api_list_records(request):
     if request.method =="GET":
-        record = Record.objects.all()
+        records = Record.objects.all()
         return JsonResponse(
-            {"record": record},
+            {"records": records},
             encoder=RecordListEncoder,
+            safe=False,
         )
     else:#Post
-        try:
             content = json.loads(request.body)
-            print("content--->", content)
 
+            employee_id = content["employee_id"]
+            employee = Employee.objects.get(pk=employee_id)
+            content["employee"] = employee           
+            customer_id = content["customer_id"]
+            customer = Customer.objects.get(pk=customer_id)
+            content["customer"] = customer
+            vin_id = content["automobile"]
+            automobile = AutomobileVO.objects.get(pk=vin_id)
+            content["automobile"] = automobile
             record = Record.objects.create(**content)
-            print("record---->", record)
             return JsonResponse(
                 record,
                 encoder=RecordListEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create Record"}
-            )
-            response.status_code = 400
-            return response
+        # except:
+        #     response = JsonResponse(
+        #         {"message": "Could not create Record"}
+        #     )
+        #     response.status_code = 400
+        #     return response
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_record(request, id):

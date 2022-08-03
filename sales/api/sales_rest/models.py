@@ -1,11 +1,7 @@
 from django.db import models
 
 class AutomobileVO(models.Model):
-    import_href =models.CharField(max_length=255, unique=True)
-    model = models.CharField(max_length=255)
-    color = models.CharField(max_length=255)
-    year = models.PositiveIntegerField()
-    vin = models.PositiveIntegerField(unique=True)
+    vin = models.CharField(max_length=255, unique=True)
 
 class Employee(models.Model):
     employee_name = models.CharField(max_length=255)

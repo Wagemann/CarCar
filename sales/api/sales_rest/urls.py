@@ -37,7 +37,7 @@ urlpatterns = [
         name="api_list_records"
     ),
         path(
-        "record/",
+        "record/<int:id>/",
         api_record,
         name="api_record"
     ),
