@@ -13,11 +13,11 @@ function ManufacturerList(props) {
                     <tr key={manufacturer.id} >
                         <td>{manufacturer.name}</td>
                     </tr>
-                )
+                );
             })}
             </tbody>
         </table>
-    )
+    );
 }
 
 export default ManufacturerList;

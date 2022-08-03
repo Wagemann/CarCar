@@ -12,8 +12,8 @@ function App(props) {
       <Nav />
       <div className="container">
         <Routes>
-          <Route path="/" element={<MainPage />} />
           <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} />
+          <Route path="/" element={<MainPage />} />
           
         </Routes>
       </div>
