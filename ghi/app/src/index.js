@@ -16,7 +16,6 @@ async function loadLists() {
     const dataModels = await responseModels.json();
     const dataAutomobiles = await responseAutomobiles.json();
     const dataRecords = await responseRecords.json();
-    console.log(dataRecords.records)
     root.render(
       <React.StrictMode>
         <App manufacturers={dataManufacturer.manufacturers}

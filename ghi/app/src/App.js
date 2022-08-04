@@ -10,6 +10,7 @@ import AutomobileForm from './AutomobileForm';
 import SalesList from './SalesList';
 import SalesListDetail from './SaleListDetail';
 import EmployeeForm from './EmployeeForm';
+import CustomerForm from './CustomerForm';
 
 function App(props) {
   if (props.manufacturers === undefined){
@@ -30,6 +31,7 @@ function App(props) {
       <Nav />
       <div className="container">
         <Routes>
+         <Route path="/sales/customer/create" element={<CustomerForm />} />
          <Route path="/sales/employee/create" element={<EmployeeForm />} />
          <Route path="/sales/detail" element={<SalesListDetail record={props.records} />} />
          <Route path="/sales/all" element={<SalesList record={props.records} />} />

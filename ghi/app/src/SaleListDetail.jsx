@@ -14,10 +14,8 @@ class SalesListDetail extends Component{
     async componentDidMount(){
         const urlRecord = "http://localhost:8090/api/record/"
         const responseRecord = await fetch(urlRecord)
-        console.log("responserecord---->", responseRecord)
         if (responseRecord.ok){
             const dataRecord = await responseRecord.json()
-            console.log("here----->", dataRecord)
             this.setState({records: dataRecord.records})
         }
 
@@ -26,7 +24,6 @@ class SalesListDetail extends Component{
         if (responseEmployee.ok){
             const dataEmployee = await responseEmployee.json()
             this.setState({employees: dataEmployee.employee})
-            console.log("data employee--->", dataEmployee.employee)
         }
 
     }
@@ -54,7 +51,6 @@ class SalesListDetail extends Component{
                     </tr>
                 </thead>
                 <tbody>{this.state.records.map(file => {
-                    console.log("this records---->", this.state.records)
                     if(this.state.employee_name === file.employee_name){
                     return (
                         <tr key={file.id} >
