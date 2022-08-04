@@ -8,27 +8,21 @@ class AutomobileForm extends Component {
             color: '',
             year: '',
             models: [],
-            manufacturers: [],
 
         };
         this.handleVinChange=this.handleVinChange.bind(this);
         this.handleColorChange=this.handleColorChange.bind(this);
         this.handleYearChange=this.handleYearChange.bind(this);
         this.handleModelChange=this.handleModelChange.bind(this);
-        this.handleManufacturerChange=this.handleManufacturerChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
 
     async componentDidMount(){
-        const url = "http://localhost:8100/api/manufacturers/"
         const url2 = "http://localhost:8100/api/models/"
-        const response = await fetch(url)
         const response2 = await fetch(url2)
-        if (response.ok && response2.ok){
-            const data = await response.json()
+        if (response2.ok){
             const data2 = await response2.json()
-            this.setState({manufacturers: data.manufacturers,
-                models: data2.models})
+            this.setState({models: data2.models})
         };
     }
 
@@ -49,11 +43,6 @@ class AutomobileForm extends Component {
     handleModelChange(event){
         const value = event.target.value;
         this.setState({model_id:value})
-    }
-   
-    handleManufacturerChange(event){
-        const value = event.target.value;
-        this.setState({manufacturer_id:value})
     }
 
 
@@ -107,14 +96,6 @@ class AutomobileForm extends Component {
                   <option value="">Model</option>
                   {this.state.models.map(model => {
                     return <option key={model.href} value={model.id}>{model.name}</option>
-                  })}
-                </select>
-              </div>
-              <div className="mb-3">
-                <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} name="manufacturer_id" required id="manufacturers" className="form-select">
-                  <option value="">Manufacturer</option>
-                  {this.state.manufacturers.map(manufacturer => {
-                    return <option key={manufacturer.href} value={manufacturer.id}>{manufacturer.name}</option>
                   })}
                 </select>
               </div>
