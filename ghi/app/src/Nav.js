@@ -17,25 +17,31 @@ function Nav() {
             <NavLink className="nav-link"  aria-current="page" to="/inventory/manufacturer/create">Create Manufacturer</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/inventory/manufacturer">Manufacturer List</NavLink>
+            <NavLink className="nav-link" aria-current="page" to="/inventory/manufacturer">Manufacturers</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/inventory/models/create">Create Vehicle Model</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/inventory/models">Vehicle Model List</NavLink>
+            <NavLink className="nav-link" aria-current="page" to="/inventory/models">Vehicle Models</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/inventory/automobiles/create">Create Automobile</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/inventory/automobiles">Automobile List</NavLink>
+            <NavLink className="nav-link" aria-current="page" to="/inventory/automobiles">Automobiles</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/sales">Sales</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/service">Service</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/appointments/technicians">Technicians</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/appointments/technicians/create">Create Technician</NavLink>
           </li>
           </ul>
         </div>

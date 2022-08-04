@@ -7,20 +7,24 @@ async function loadLists() {
   const responseManufacturer = await fetch('http://localhost:8100/api/manufacturers/');
   const responseModels = await fetch('http://localhost:8100/api/models/');
   const responseAutomobiles = await fetch('	http://localhost:8100/api/automobiles/');
+  const responseTechnicians = await fetch('http://localhost:8080/api/technicians/');
 
-  if (responseManufacturer.ok && responseModels.ok && responseAutomobiles) {
+  if (responseManufacturer.ok && responseModels.ok && responseAutomobiles && responseTechnicians) {
     const dataManufacturer = await responseManufacturer.json();
     const dataModels = await responseModels.json();
     const dataAutomobiles = await responseAutomobiles.json();
-    console.log(dataAutomobiles.autos)
+    const dataTechnicians = await responseTechnicians.json();
+    // console.log(dataAutomobiles.autos)
+
     root.render(
       <React.StrictMode>
-        <App manufacturers={dataManufacturer.manufacturers} models={dataModels.models} automobiles={dataAutomobiles.autos} />
+        <App manufacturers={dataManufacturer.manufacturers} models={dataModels.models} automobiles={dataAutomobiles.autos}
+        technicians={dataTechnicians.technician} />
         
       </React.StrictMode>
     );
   }else{
-    console.error(responseManufacturer, responseModels, responseAutomobiles);
+    console.error(responseManufacturer, responseModels, responseAutomobiles, responseTechnicians);
   }
 }
 loadLists();
