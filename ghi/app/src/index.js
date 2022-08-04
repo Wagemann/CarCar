@@ -4,20 +4,23 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 async function loadLists() {
-  const response = await fetch('http://localhost:8100/api/manufacturers/');
-  const response2 = await fetch('http://localhost:8100/api/models/');
-  if (response.ok && response2.ok) {
-    const data = await response.json();
-    const data2 = await response2.json();
+  const responseManufacturer = await fetch('http://localhost:8100/api/manufacturers/');
+  const responseModels = await fetch('http://localhost:8100/api/models/');
+  const responseAutomobiles = await fetch('	http://localhost:8100/api/automobiles/');
+
+  if (responseManufacturer.ok && responseModels.ok && responseAutomobiles) {
+    const dataManufacturer = await responseManufacturer.json();
+    const dataModels = await responseModels.json();
+    const dataAutomobiles = await responseAutomobiles.json();
     // console.log(data2.models)
     root.render(
       <React.StrictMode>
-        <App manufacturers={data.manufacturers} models={data2.models}/>
+        <App manufacturers={dataManufacturer.manufacturers} models={dataModels.models} automobiles={dataAutomobiles.autos} />
         
       </React.StrictMode>
     );
   }else{
-    console.error(response, response2);
+    console.error(responseManufacturer, responseModels);
   }
 }
 loadLists();

@@ -35,14 +35,13 @@ class VehicleModelForm extends Component {
     }
     handleManufacturerChange(event){
         const value = event.target.value;
-        this.setState({manufacturer:value})
+        this.setState({manufacturer_id:value})
     }
    
 
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state}
-        console.log("DATA!!!!!!!", data)
         delete data.manufacturers
 
         const vehicleModelUrl = "http://localhost:8100/api/models/";
@@ -53,10 +52,9 @@ class VehicleModelForm extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        const response = await fetch(vehicleModelUrl, fetchConfig)
+        const response = await fetch(vehicleModelUrl, fetchConfig);
         if (response.ok){
-            const newModel = await response.json()
-            // console.log("!!!!!!!!", newModel)
+            const newModel = await response.json();
             const cleared = {
                 name: '',
                 picture_url: '',
@@ -80,10 +78,10 @@ class VehicleModelForm extends Component {
                 <label htmlFor="picture">Picture</label>
               </div>
               <div className="mb-3">
-                <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} name="manufacturers" required id="manufacturers" className="form-select">
+                <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} name="manufacturer_id" required id="manufacturers" className="form-select">
                   <option value="">Manufacturer</option>
                   {this.state.manufacturers.map(manufacturer => {
-                    return <option key={manufacturer.href} value={manufacturer.href}>{manufacturer.name}</option>
+                    return <option key={manufacturer.href} value={manufacturer.id}>{manufacturer.name}</option>
                   })}
                 </select>
               </div>
