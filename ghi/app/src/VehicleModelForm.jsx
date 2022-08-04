@@ -31,22 +31,23 @@ class VehicleModelForm extends Component {
     }
     handlePictureChange(event){
         const value = event.target.value;
-        this.setState({picture:value})
+        this.setState({picture_url:value})
     }
     handleManufacturerChange(event){
         const value = event.target.value;
-        this.setState({manufacturers:value})
+        this.setState({manufacturer:value})
     }
    
 
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state}
+        console.log("DATA!!!!!!!", data)
         delete data.manufacturers
 
-        const vehicleModelUrl = "http://localhost:8100/api/models/"
+        const vehicleModelUrl = "http://localhost:8100/api/models/";
         const fetchConfig = {
-            method: "POST",
+            method: "post",
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
@@ -55,6 +56,7 @@ class VehicleModelForm extends Component {
         const response = await fetch(vehicleModelUrl, fetchConfig)
         if (response.ok){
             const newModel = await response.json()
+            // console.log("!!!!!!!!", newModel)
             const cleared = {
                 name: '',
                 picture_url: '',
@@ -78,7 +80,7 @@ class VehicleModelForm extends Component {
                 <label htmlFor="picture">Picture</label>
               </div>
               <div className="mb-3">
-                <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} name="manufacturer" required id="manufacturer" className="form-select">
+                <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} name="manufacturers" required id="manufacturers" className="form-select">
                   <option value="">Manufacturer</option>
                   {this.state.manufacturers.map(manufacturer => {
                     return <option key={manufacturer.href} value={manufacturer.href}>{manufacturer.name}</option>
