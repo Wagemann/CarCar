@@ -7,7 +7,7 @@ class AutomobileForm extends Component {
             vin: '',
             color: '',
             year: '',
-            model: [],
+            models: [],
             manufacturers: [],
 
         };
@@ -27,11 +27,12 @@ class AutomobileForm extends Component {
         if (response.ok && response2.ok){
             const data = await response.json()
             const data2 = await response2.json()
-            this.setState({manufacturers: data.manufacturers},
-                {models: data2.models})
-        }
-
+            this.setState({manufacturers: data.manufacturers,
+                models: data2.models})
+        };
     }
+
+
     handleVinChange(event){
         const value = event.target.value;
         this.setState({vin:value})
@@ -62,7 +63,7 @@ class AutomobileForm extends Component {
         delete data.manufacturers
         delete data.models
 
-        const automobileUrl = "http://localhost:8100/api/models/automobiles";
+        const automobileUrl = "http://localhost:8100/api/automobiles/";
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -70,6 +71,7 @@ class AutomobileForm extends Component {
                 'Content-Type': 'application/json'
             }
         }
+        console.log("FETCHCONFIG!!!!!!!", fetchConfig.body)
         const response = await fetch(automobileUrl, fetchConfig);
         if (response.ok){
             const newAutomobile = await response.json();
@@ -101,7 +103,7 @@ class AutomobileForm extends Component {
                 <label htmlFor="year">Year</label>
               </div>
               <div className="mb-3">
-                <select onChange={this.handleModelChange} value={this.state.model} name="model_id" required id="model" className="form-select">
+                <select onChange={this.handleModelChange} value={this.state.model} name="model_id" required id="models" className="form-select">
                   <option value="">Model</option>
                   {this.state.models.map(model => {
                     return <option key={model.href} value={model.id}>{model.name}</option>
