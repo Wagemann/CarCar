@@ -6,6 +6,7 @@ import ManufacturerForm from './ManufacturerForm';
 import VehicleModelList from './VehicleModelList';
 import VehicleModelForm from './VehicleModelForm';
 import AutomobileList from './AutomobileList';
+import AutomobileForm from './AutomobileForm';
 
 function App(props) {
   if (props.manufacturers === undefined){
@@ -24,7 +25,7 @@ function App(props) {
       <div className="container">
         <Routes>
          <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
-
+         <Route path="/inventory/automobiles/create" element={<AutomobileForm />} />
           <Route path="/inventory/models" element={<VehicleModelList models={props.models} />} />
           <Route path="/inventory/models/create" element={< VehicleModelForm/> }  />
           <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} />
