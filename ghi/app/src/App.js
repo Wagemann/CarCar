@@ -9,6 +9,8 @@ import AutomobileList from './AutomobileList';
 import AutomobileForm from './AutomobileForm';
 import TechnicianList from './TechnicianList';
 import TechnicianForm from './TechnicianForm';
+import AppointmentList from './AppointmentList';
+import AppointmentForm from './AppointmentForm';
 
 
 function App(props) {
@@ -24,16 +26,21 @@ function App(props) {
   if (props.technicians === undefined){
     return null;
   }
+  if (props.appointments === undefined){
+    return null;
+  }
 
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
-        <Route path="/appointments/technicians" element={<TechnicianList technicians={props.technicians} />} />
-        <Route path="/appointments/technicians/create" element={<TechnicianForm />} />
-         <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
-         <Route path="/inventory/automobiles/create" element={<AutomobileForm />} />
+          <Route path="/appointments" element={<AppointmentList appointments={props.appointments} />} />
+          <Route path="/appointments/create" element={<AppointmentForm />} />
+          <Route path="/appointments/technicians" element={<TechnicianList technicians={props.technicians} />} />
+          <Route path="/appointments/technicians/create" element={<TechnicianForm />} />
+          <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
+          <Route path="/inventory/automobiles/create" element={<AutomobileForm />} />
           <Route path="/inventory/models" element={<VehicleModelList models={props.models} />} />
           <Route path="/inventory/models/create" element={< VehicleModelForm/> }  />
           <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} />

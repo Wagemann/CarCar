@@ -27,7 +27,8 @@ class AppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
         "customer",
-        "appt_date_time",
+        "date",
+        "time",
         "technician",
         "reason",
         "is_vip",
@@ -71,14 +72,18 @@ def api_list_service_appointments(request):
         )
     else:
         content = json.loads(request.body)
+        print("CONTENT!!!!!", content)
         
         try:
             vin_number = content["vin"]
+            print("VIN!!!", vin_number)
             automobile = AutomobileVO.objects.get(vin=vin_number)
+            print("AUTOMOBILE!!!!", automobile)
             content["car"] = automobile
             employee_id = content["technician"]
             technician_name = Technician.objects.get(employee_id=employee_id)
             content["technician"] = technician_name
+            # print("CONTENT!!!", content)
             appointment = ServiceAppointment.objects.create(**content)
             return JsonResponse(
                 appointment,

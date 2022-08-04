@@ -25,7 +25,8 @@ class ServiceAppointment(models.Model):
     )
     vin = models.CharField(max_length=200)
     customer = models.CharField(max_length=200)
-    appt_date_time = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
     completed = models.BooleanField(default=False)
     technician = models.ForeignKey(
         Technician,
