@@ -11,20 +11,19 @@ function App(props) {
   if (props.manufacturers === undefined){
     return null;
   }
-
   if (props.models === undefined){
     return null;
   }
-  // if (props.autos === undefined){
-  //   return null;
-  // }
+  if (props.automobiles === undefined){
+    return null;
+  }
 
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
-
+         <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
 
           <Route path="/inventory/models" element={<VehicleModelList models={props.models} />} />
           <Route path="/inventory/models/create" element={< VehicleModelForm/> }  />

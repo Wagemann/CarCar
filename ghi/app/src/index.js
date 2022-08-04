@@ -12,7 +12,7 @@ async function loadLists() {
     const dataManufacturer = await responseManufacturer.json();
     const dataModels = await responseModels.json();
     const dataAutomobiles = await responseAutomobiles.json();
-    // console.log(data2.models)
+    console.log(dataAutomobiles.autos)
     root.render(
       <React.StrictMode>
         <App manufacturers={dataManufacturer.manufacturers} models={dataModels.models} automobiles={dataAutomobiles.autos} />
@@ -20,7 +20,7 @@ async function loadLists() {
       </React.StrictMode>
     );
   }else{
-    console.error(responseManufacturer, responseModels);
+    console.error(responseManufacturer, responseModels, responseAutomobiles);
   }
 }
 loadLists();
