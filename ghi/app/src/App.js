@@ -13,7 +13,6 @@ import AppointmentList from './AppointmentList';
 import AppointmentForm from './AppointmentForm';
 import ServiceHistoryForm from './ServiceHistoryForm';
 import ServiceHistoryList from './ServiceHistoryList';
-
 import SalesList from './SalesList';
 import SalesListDetail from './SaleListDetail';
 import EmployeeForm from './EmployeeForm';
