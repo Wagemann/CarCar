@@ -11,6 +11,8 @@ import TechnicianList from './TechnicianList';
 import TechnicianForm from './TechnicianForm';
 import AppointmentList from './AppointmentList';
 import AppointmentForm from './AppointmentForm';
+import ServiceHistoryForm from './ServiceHistoryForm';
+import ServiceHistoryList from './ServiceHistoryList';
 
 
 function App(props) {
@@ -29,12 +31,18 @@ function App(props) {
   if (props.appointments === undefined){
     return null;
   }
+  if (props.history !== undefined){
+    return null;
+  }
+
 
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
+        <Route path="/service_history" element={<ServiceHistoryList history={props.history} />} />
+          <Route path="service_history/search" element={<ServiceHistoryForm />} />
           <Route path="/appointments" element={<AppointmentList appointments={props.appointments} />} />
           <Route path="/appointments/create" element={<AppointmentForm />} />
           <Route path="/appointments/technicians" element={<TechnicianList technicians={props.technicians} />} />

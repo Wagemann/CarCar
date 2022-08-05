@@ -8,7 +8,8 @@ class AppointmentForm extends Component {
             customer: '',
             date: '',
             time:'',
-            technician:'',
+            technician: '',
+            technician:[],
             reason:'',
 
         };
@@ -16,17 +17,18 @@ class AppointmentForm extends Component {
         this.handleCustomerChange=this.handleCustomerChange.bind(this);
         this.handleDateChange=this.handleDateChange.bind(this);
         this.handleTimeChange=this.handleTimeChange.bind(this);
-        this.handleTechnicianhange=this.handleTechnicianChange.bind(this);
+        this.handleTechnicianChange=this.handleTechnicianChange.bind(this);
         this.handleReasonChange=this.handleReasonChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
-
+    // fetching data to go into the select tag
     async componentDidMount(){
-        const url = "http://localhost:8080/api/appointments/"
+        const url = "http://localhost:8080/api/technicians/"
         const response = await fetch(url)
         if (response.ok){
             const data = await response.json()
-            this.setState({appointments: data.appointments})
+            console.log("DATA!!!", data)
+            this.setState({technicians: data.technician})
         };
     }
 
@@ -61,7 +63,7 @@ class AppointmentForm extends Component {
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state}
-        delete data.technicians
+        delete data.technician
 
         const appointmentUrl = "http://localhost:8080/api/appointments/";
         const fetchConfig = {
@@ -79,6 +81,7 @@ class AppointmentForm extends Component {
                 customer: '',
                 date: '',
                 time:'',
+                technician: '',
                 reason:'',
                 }
             this.setState(cleared)
@@ -111,7 +114,7 @@ class AppointmentForm extends Component {
                 <select onChange={this.handleTechnicianChange} value={this.state.technician} name="technician" required id="technician" className="form-select">
                   <option value="">Technician</option>
                   {this.state.technicians?.map(technician => {
-                    return <option key={technician.href} value={technician.id}>{technician.name}</option>
+                    return <option key={technician.id} value={technician.id}>{technician.name}</option>
                   })}
                 </select>
               </div>

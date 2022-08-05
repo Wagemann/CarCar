@@ -21,10 +21,9 @@ class VehicleModelForm extends Component {
         if (response.ok){
             const data = await response.json()
             this.setState({manufacturers: data.manufacturers})
-
         }
-
     }
+    
     handleNameChange(event){
         const value = event.target.value;
         this.setState({name:value})
