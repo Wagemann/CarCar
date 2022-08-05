@@ -1,7 +1,6 @@
 import React from 'react';
 
 function VehicleModelList(props) {
-    console.log("props!!!!!!", props.models)
     return (
         <table className="table table-striped">
             <thead>

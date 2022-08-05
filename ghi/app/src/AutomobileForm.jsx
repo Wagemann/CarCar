@@ -23,7 +23,6 @@ class AutomobileForm extends Component {
         if (response2.ok){
             const data2 = await response2.json()
             this.setState({models: data2.models})
-            console.log("look---->", data2)
         };
     }
 
@@ -61,7 +60,6 @@ class AutomobileForm extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        console.log("FETCHCONFIG!!!!!!!", fetchConfig.body)
         const response = await fetch(automobileUrl, fetchConfig);
         if (response.ok){
             const newAutomobile = await response.json();

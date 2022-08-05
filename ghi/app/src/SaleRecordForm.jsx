@@ -51,7 +51,6 @@ class SaleRecordForm extends Component {
         const customerResponse = await fetch (customerUrl)
         if (customerResponse.ok){
             const customerData = await customerResponse.json()
-            console.log("customerData", customerData)
             this.setState({customers: customerData.customer})
         }
     }
@@ -77,15 +76,12 @@ class SaleRecordForm extends Component {
     
     
     async handleSubmit(event){
-        console.log("crazy event-->",event)
         event.preventDefault();
         const data ={...this.state}
-        console.log("im the data before deletion--->", data)
         delete data.automobiles
         delete data.employees
         delete data.customers
         delete data.records
-        console.log("im the data after deletion--->", data)
         const recordUrl = "http://localhost:8090/api/record/"
         const fetchConfig = {
             method: "post",
@@ -119,7 +115,6 @@ class SaleRecordForm extends Component {
                     <select onChange={this.handleAutomobileChange} name="automobile" required id="automobile" className="form-select">
                       <option value="">Select automobile</option>
                       {this.state.automobiles.map(auto => {
-                          // console.log(auto)
                         if(this.state.records.indexOf(auto.vin) === -1){ 
                              return <option key={auto.id} value={auto.id}>{auto.vin}</option>
                         }
@@ -144,7 +139,7 @@ class SaleRecordForm extends Component {
                   </div>
                   <div className="form-floating mb-3">
                   <input onChange={this.handlePriceChange}  placeholder="price" required type="number" name="price" id="price" className="form-control" />
-                  <label htmlFor="phone price">Sales</label>
+                  <label htmlFor="sales price">Sales Price</label>
                 </div>
                   <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
