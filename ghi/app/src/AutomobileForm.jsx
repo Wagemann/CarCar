@@ -23,6 +23,7 @@ class AutomobileForm extends Component {
         if (response2.ok){
             const data2 = await response2.json()
             this.setState({models: data2.models})
+            console.log("look---->", data2)
         };
     }
 
