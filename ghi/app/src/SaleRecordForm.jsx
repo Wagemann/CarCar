@@ -5,16 +5,16 @@ class SaleRecordForm extends Component {
         super(props);
         this.state={
             automobile:'',
-            employee:'',
-            customer:'',
+            employee_id:'',
+            customer_id:'',
             price:'',
             automobiles: [],
             employees: [],
             customers: [],
         };
-        this.handleAutomobilesChange=this.handleAutomobilesChange.bind(this);
-        this.handleEmployeeNameChange=this.handleEmployeeNameChange.bind(this);
-        this.handleCustomerNameChange=this.handleCustomerNameChange.bind(this);
+        this.handleAutomobileChange=this.handleAutomobileChange.bind(this);
+        this.handleEmployeeChange=this.handleEmployeeChange.bind(this);
+        this.handleCustomerChange=this.handleCustomerChange.bind(this);
         this.handlePriceChange=this.handlePriceChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
@@ -24,7 +24,6 @@ class SaleRecordForm extends Component {
         const automobilesResponse = await fetch (automobilesUrl)
         if (automobilesResponse.ok){
             const automobilesData = await automobilesResponse.json()
-            console.log("automotiveData", automobilesData)
             this.setState({automobiles: automobilesData.autos})
         }
         
@@ -34,27 +33,28 @@ class SaleRecordForm extends Component {
             const employeeData = await employeeResponse.json()
             this.setState({employees: employeeData.employee})
         }
-
+        
         const customerUrl = "http://localhost:8090/api/customer/"
         const customerResponse = await fetch (customerUrl)
         if (customerResponse.ok){
             const customerData = await customerResponse.json()
+            console.log("customerData", customerData)
             this.setState({customers: customerData.customer})
         }
     }
     
-    handleAutomobilesChange(event){
+    handleAutomobileChange(event){
         const value = event.target.value;
         this.setState({automobile:value})
     }
-    handleEmployeeNameChange(event){
+    handleEmployeeChange(event){
         const value = event.target.value;
-        this.setState({employee_name:value})
+        this.setState({employee_id:value})
     }
     
-    handleCustomerNameChange(event){
+    handleCustomerChange(event){
         const value = event.target.value;
-        this.setState({customer_name:value})
+        this.setState({customer_id:value})
     }
     
     handlePriceChange(event){
@@ -69,8 +69,8 @@ class SaleRecordForm extends Component {
         const data ={...this.state}
         console.log("im the data before deletion--->", data)
         delete data.automobiles
-        delete data.employee_name
-        delete data.customer_name
+        delete data.employees
+        delete data.customers
         console.log("im the data after deletion--->", data)
         const recordUrl = "http://localhost:8090/api/record/"
         const fetchConfig = {
@@ -100,15 +100,15 @@ class SaleRecordForm extends Component {
                 <h1>Create a new Record</h1>
                 <form onSubmit={this.handleSubmit}>
                   <div className="mb-3">
-                    <select onChange={this.handleAutomobilesChange} value={this.state.automobile} name="automobile" required id="automobile" className="form-select">
+                    <select onChange={this.handleAutomobileChange} name="automobile" required id="automobile" className="form-select">
                       <option value="">Select automobile</option>
-                      {this.state.automobiles.map(auto => {
+                      {this.state.automobiles.map(auto => { 
                           return <option key={auto.id} value={auto.id}>{auto.vin}</option>
                         })}
                     </select>
                   </div>
                   <div className="mb-3">
-                    <select onChange={this.handleEmployeeNameChange} value={this.state.employee_name} name="employee_name" required id="employee_name" className="form-select">
+                    <select onChange={this.handleEmployeeChange}  name="employee" required id="employee" className="form-select">
                       <option value="">Select Employee</option>
                       {this.state.employees.map(person => {
                           return <option key={person.id} value={person.employee_id}>{person.employee_name}</option>
@@ -116,15 +116,15 @@ class SaleRecordForm extends Component {
                     </select>
                   </div>
                   <div className="mb-3">
-                    <select onChange={this.handleCustomerNameChange} value={this.state.customer_name} name="customer_name" required id="customer_name" className="form-select">
+                    <select onChange={this.handleCustomerChange}  name="customer" required id="customer" className="form-select">
                       <option value="">Select Customer</option>
                       {this.state.customers.map(person => {
-                          return <option key={person.id} value={person.customer_id}>{person.customer_name}</option>
+                          return <option key={person.id} value={person.id}>{person.customer_name}</option>
                         })}
                     </select>
                   </div>
                   <div className="form-floating mb-3">
-                  <input onChange={this.handlePriceChange} value={this.state.price} placeholder="price" required type="number" name="price" id="price" className="form-control" />
+                  <input onChange={this.handlePriceChange}  placeholder="price" required type="number" name="price" id="price" className="form-control" />
                   <label htmlFor="phone price">Sales</label>
                 </div>
                   <button type="submit" className="btn btn-primary">Submit</button>
