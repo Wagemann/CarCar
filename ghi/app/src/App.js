@@ -14,6 +14,11 @@ import AppointmentForm from './AppointmentForm';
 import ServiceHistoryForm from './ServiceHistoryForm';
 import ServiceHistoryList from './ServiceHistoryList';
 
+import SalesList from './SalesList';
+import SalesListDetail from './SaleListDetail';
+import EmployeeForm from './EmployeeForm';
+import CustomerForm from './CustomerForm';
+import SaleRecordForm from './SaleRecordForm';
 
 function App(props) {
   if (props.manufacturers === undefined){
@@ -35,6 +40,9 @@ function App(props) {
     return null;
   }
 
+  if (props.records === undefined){
+    return null;
+  }
 
   return (
     <BrowserRouter>
@@ -49,6 +57,13 @@ function App(props) {
           <Route path="/appointments/technicians/create" element={<TechnicianForm />} />
           <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
           <Route path="/inventory/automobiles/create" element={<AutomobileForm />} />
+         <Route path="/sales/record/create" element={<SaleRecordForm />} />
+         <Route path="/sales/customer/create" element={<CustomerForm />} />
+         <Route path="/sales/employee/create" element={<EmployeeForm />} />
+         <Route path="/sales/detail" element={<SalesListDetail record={props.records} />} />
+         <Route path="/sales/all" element={<SalesList record={props.records} />} />
+         <Route path="/inventory/automobiles" element={<AutomobileList automobiles={props.automobiles} />} />
+         <Route path="/inventory/automobiles/create" element={<AutomobileForm />} />
           <Route path="/inventory/models" element={<VehicleModelList models={props.models} />} />
           <Route path="/inventory/models/create" element={< VehicleModelForm/> }  />
           <Route path="/inventory/manufacturer" element={<ManufacturerList manufacturers={props.manufacturers} />} />

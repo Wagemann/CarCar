@@ -60,7 +60,6 @@ class AutomobileForm extends Component {
                 'Content-Type': 'application/json'
             }
         }
-        console.log("FETCHCONFIG!!!!!!!", fetchConfig.body)
         const response = await fetch(automobileUrl, fetchConfig);
         if (response.ok){
             const newAutomobile = await response.json();
