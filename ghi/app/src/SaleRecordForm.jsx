@@ -11,6 +11,7 @@ class SaleRecordForm extends Component {
             automobiles: [],
             employees: [],
             customers: [],
+            records:[],
         };
         this.handleAutomobileChange=this.handleAutomobileChange.bind(this);
         this.handleEmployeeChange=this.handleEmployeeChange.bind(this);
@@ -18,14 +19,26 @@ class SaleRecordForm extends Component {
         this.handlePriceChange=this.handlePriceChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
-
+    
     async componentDidMount(){
+        const urlRecord = "http://localhost:8090/api/record/"
+        const responseRecord = await fetch(urlRecord)
+        if (responseRecord.ok){
+            const dataRecord = await responseRecord.json()
+            console.log("datarecord--->", dataRecord)
+            let vins = []
+            dataRecord.records.forEach(car => 
+                vins.push(car.vin)
+                )
+            this.setState({records: vins})
+        }
         const automobilesUrl = "http://localhost:8100/api/automobiles/"
         const automobilesResponse = await fetch (automobilesUrl)
         if (automobilesResponse.ok){
             const automobilesData = await automobilesResponse.json()
             this.setState({automobiles: automobilesData.autos})
         }
+        
         
         const employeeUrl = "http://localhost:8090/api/employee/"
         const employeeResponse = await fetch(employeeUrl)
@@ -84,9 +97,10 @@ class SaleRecordForm extends Component {
         if(response.ok){
             const newRecord = await response.json();
             const cleared ={
-                automobiles: '',
-                employee_name: '',
-                customer_name: '',
+                automobiles: [],
+                employees: [],
+                customers: [],
+                records:[],
                 price:'',
                 }
             this.setState(cleared)
@@ -102,9 +116,17 @@ class SaleRecordForm extends Component {
                   <div className="mb-3">
                     <select onChange={this.handleAutomobileChange} name="automobile" required id="automobile" className="form-select">
                       <option value="">Select automobile</option>
-                      {this.state.automobiles.map(auto => { 
-                          return <option key={auto.id} value={auto.id}>{auto.vin}</option>
+                      {this.state.automobiles.map(auto => {
+                        //   console.log(auto.id, this.state.records.indexOf(auto))
+                          console.log(auto)
+                        if(this.state.records.indexOf(auto.vin) === -1){ 
+                             return <option key={auto.id} value={auto.id}>{auto.vin}</option>
+                        }
                         })}
+                                              {/* {this.state.automobiles.filter(x =>x.this.state.records ).map(auto => {
+                        //   if(this.state.automobiles) 
+                          return <option key={auto.id} value={auto.id}>{auto.vin}</option>
+                        })} */}
                     </select>
                   </div>
                   <div className="mb-3">

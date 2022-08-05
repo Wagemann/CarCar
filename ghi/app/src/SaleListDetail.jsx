@@ -34,12 +34,14 @@ class SalesListDetail extends Component{
     render(){
         return (
             <div>
+            <div className='p-4 mt-4'>
             <select onChange={this.handleEmployeeNameChange} value={this.state.employee_name} name="employee_name" required id="employee_name" className="form-select">
-                    <option value="">Employee Name</option>
+                    <option value="">Select Employee</option>
                     {this.state.employees.map(employee => {
                         return <option key={employee.employee_id} value={employee.employee_name}>{employee.employee_name}</option>
                     })}
                     </select>
+            </div>
             <table className="table table-striped">
                 <thead>
                     <tr>
