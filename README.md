@@ -5,6 +5,18 @@ Team:
 * Nick Wagemann - Sales
 * Teresa Tan - Service
 
+## Startup
+Run the following commands in your terminal after you have cloned the project.
+
+1) docker volume create beta-data (this will build a new volumne that the containers can consume and store data in)
+
+2) docker compose build (this will build images as per your docker-compose.yml file)
+
+3) docker compose up (this will start or restart all services defined in the docker-compose.yml)
+
+4) Enjoy and give us both an A++
+
+
 ## Design
 https://excalidraw.com/#room=0f44eaab5c08dac4624c,2vOC4MVxqogn7K-tuU1SWg
 
