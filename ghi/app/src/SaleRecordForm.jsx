@@ -25,7 +25,7 @@ class SaleRecordForm extends Component {
         const responseRecord = await fetch(urlRecord)
         if (responseRecord.ok){
             const dataRecord = await responseRecord.json()
-            console.log("datarecord--->", dataRecord)
+            // console.log("datarecord--->", dataRecord)
             let vins = []
             dataRecord.records.forEach(car => 
                 vins.push(car.vin)
@@ -84,6 +84,7 @@ class SaleRecordForm extends Component {
         delete data.automobiles
         delete data.employees
         delete data.customers
+        delete data.records
         console.log("im the data after deletion--->", data)
         const recordUrl = "http://localhost:8090/api/record/"
         const fetchConfig = {
@@ -101,6 +102,7 @@ class SaleRecordForm extends Component {
                 employees: [],
                 customers: [],
                 records:[],
+                records:'',
                 price:'',
                 }
             this.setState(cleared)
@@ -117,16 +119,11 @@ class SaleRecordForm extends Component {
                     <select onChange={this.handleAutomobileChange} name="automobile" required id="automobile" className="form-select">
                       <option value="">Select automobile</option>
                       {this.state.automobiles.map(auto => {
-                        //   console.log(auto.id, this.state.records.indexOf(auto))
-                          console.log(auto)
+                          // console.log(auto)
                         if(this.state.records.indexOf(auto.vin) === -1){ 
                              return <option key={auto.id} value={auto.id}>{auto.vin}</option>
                         }
                         })}
-                                              {/* {this.state.automobiles.filter(x =>x.this.state.records ).map(auto => {
-                        //   if(this.state.automobiles) 
-                          return <option key={auto.id} value={auto.id}>{auto.vin}</option>
-                        })} */}
                     </select>
                   </div>
                   <div className="mb-3">
