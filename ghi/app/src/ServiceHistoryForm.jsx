@@ -1,6 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
+import {React, Component, useState} from 'react';
 
-class ServiceHistoryForm extends React.Component {
+
+class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -64,4 +66,52 @@ class ServiceHistoryForm extends React.Component {
   }
 }
 
-export default ServiceHistoryForm;
+// // function SearchBar(props) {
+// //     const [error, setError] =useState(null);
+// //     const [isLoaded, setIsloaded] = useState(false);
+// //     const [items, setItems] = useState([]);
+
+// //     const [filteredData, setFilteredData] = useState([]);
+
+// //     const handleFilter = (event) => {
+// //         const searchWord = event.target.value;
+// //         const newfilter = data.filter((value) => {
+// //             return value.vin.toLowerCase().includes(searchWord.toLowerCase());
+// //         });
+
+// //         if (searchWord === "") {
+// //             setfilteredData([]);
+// //         }else {
+// //             setFilteredData(newFilter);
+// //         }
+// //     };
+
+// //     useEffect(() => {
+// //         fetch("http://localhost:8080/api/appointments/")
+// //         .then((res) => res.json())
+// //         .then(
+// //             (result) => {
+// //                 setIsLoaded(true);
+// //                 setItems(result);
+// //             },
+// //             (error) => {
+// //                 setIsLoaded(true);
+// //                 setError(error);
+// //             }
+// //         );
+// //     }, []);
+
+
+
+// //     return (
+// //         <div className="container">
+// //             <div className="row height d-flex justify-content-center align-items-top">
+// //                 <div className="col-md-8">
+// //                 <div className="search">
+// //                     <i className="fa fa-search"></i></>
+// //                     <input type="text" className="form-control" placeholder="Enter Vin" onChange={handleFilter}
+// //                 </div>
+// //                 </div>
+// //             </div>
+// //         </div>
+export default SearchBar;

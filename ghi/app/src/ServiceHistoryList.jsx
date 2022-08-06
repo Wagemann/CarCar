@@ -52,16 +52,6 @@ handleSearchChange(event){
 
  render() {
     return (
-        // <div><
-        //     <div className='p-4 mt-4'>
-        //         <select onChange={this.handleSearchChange} value={this.state.search} name="search" required id="search" className="form-select">
-        //                 <option value="">Select Employee</option>
-        //                 {this.state.employees.map(employee => {
-        //                     return <option key={employee.employee_id} value={employee.employee_name}>{employee.employee_name}</option>
-        //                 })}
-        //                 </select>
-        //         </div>
-        // /div>
             <table className="table table-striped">
                 <h1>Service appointments</h1>
                 <thead>
@@ -75,7 +65,7 @@ handleSearchChange(event){
                     </tr>
                 </thead>
                 <tbody>{this.state.history.map(history => {
-                    if (this.state.history.map === history) {
+                    if (this.state.history?.map === history) {
                     return (
                         <tr key={history.id} >
                             <td>{history.vin}</td>

@@ -16,10 +16,10 @@ function Nav() {
             </a>
             <ul className="dropdown-menu">
               <li><a  className="dropdown-item" aria-current="page" href="/inventory/manufacturer/create" >Create Manufacturer</a></li>
-              <li><a  className="dropdown-item" aria-current="page" href="/inventory/manufacturer" >Manufacturer List</a></li>
               <li><a  className="dropdown-item" aria-current="page" href="/inventory/models/create" >Create Vehicle Model</a></li>
-              <li><a  className="dropdown-item" aria-current="page" href="/inventory/models" >Vehicle Model List</a></li>
               <li><a  className="dropdown-item" aria-current="page" href="/inventory/automobiles/create" >Create Automobile</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/inventory/manufacturer" >Manufacturer List</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/inventory/models" >Vehicle Model List</a></li>
               <li><a  className="dropdown-item" aria-current="page" href="/inventory/automobiles" >Automobile List</a></li>
             </ul>
           </li>
