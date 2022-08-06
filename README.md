@@ -121,7 +121,9 @@ The employee model is used to create an employee and the customer model is used 
 
 The Record Model is reliant upon the other three models to generate records that will have each of them listed within.
 
-I created views that give the ability to get list, view details of specific items, update particular items, delete specific items, and post new items for the employee, customer, and record model. 
+I created views that give the ability to get list, view details of specific items, update particular items, delete specific items, and post new items for the employee, customer, and record model.
+
+These views helped provide the information to fetch necessary information for the react microservice on the front end.
 
 You can use all that functionality in Insomnia and some of the necessary lists and view features on the browser.
 
