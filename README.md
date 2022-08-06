@@ -15,9 +15,8 @@ Run the following commands in your terminal after you have cloned the project fr
 3) docker compose up (this will start or restart all services defined in the docker-compose.yml)
 
 4) Enjoy and give us both an A++ 🙂
-4) Open browser to http://localhost:3000 to view the home page.
 
-5) Enjoy and give us both an A++
+5) Open browser to http://localhost:3000 to view the home page.
 
 
 ## Design
