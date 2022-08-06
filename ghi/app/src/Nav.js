@@ -47,6 +47,11 @@ function Nav() {
               <li><a  className="dropdown-item" aria-current="page" href="/service_history" >Service History</a></li>
               <li><a  className="dropdown-item" aria-current="page" href="/appointments/technicians" >Technicians List</a></li>
               <li><a  className="dropdown-item" aria-current="page" href="/appointments" >Appointment List</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/service" >Service Appointments</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/appointments/technicians" >Technicians</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/appointments/technicians/create" >Create Technician</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/appointments" >Appointments</a></li>
+              <li><a  className="dropdown-item" aria-current="page" href="/appointments/create" >Make an Appointment</a></li>
             </ul>
           </li>
           </ul>
