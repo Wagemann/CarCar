@@ -20,6 +20,8 @@ Run the following commands in your terminal after you have cloned the project.
 
 
 ## Design
+We started the project by working together in Excalidraw and planning out our site and models by drawing them out and labeling them before we even opened up our code editor. Which helped give us a good reference throughout the project to look to on how everything would interact with each other and how the site would look.
+
 https://excalidraw.com/#room=0f44eaab5c08dac4624c,2vOC4MVxqogn7K-tuU1SWg
 
 ## Service microservice
